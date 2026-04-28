@@ -49,16 +49,31 @@
         </h2>
     </div>
 
-    <!-- TEXTO -->
-    <div class="texto-home">
-        <p>
-            El Congreso de Secundaria Aprende será un espacio de encuentro, intercambio y reflexión...
-        </p>
+   <!-- TEXTO -->
+<div class="texto-home">
+    <p>
+        El <b>Congreso de Secundaria Aprende </b> será un espacio de <i>encuentro, intercambio y reflexión </i> entre actores de la comunidad educativa, orientado a <b>socializar experiencias y fortalecer los procesos de transformación de la escuela secundaria</b>.
+    </p>
 
-        <p>
-            La propuesta recupera el trabajo desarrollado por las instituciones...
-        </p>
-    </div>
+    <p>
+        La propuesta recupera el trabajo desarrollado por las instituciones en torno a <b><i>Secundaria Aprende</i></b> y busca generar una instancia ampliada de participación, aprendizaje entre pares y construcción de nuevas ideas para la <b>mejora de la enseñanza y la organización escolar</b>.
+    </p>
+
+    <p>
+        La jornada incluirá <b>mesas temáticas, stands de experiencias, talleres, conversatorios</b> y otros espacios de intercambio y formación.
+    </p>
+    <p>
+        El Congreso está destinado a <b>equipos directivos y docentes de escuelas secundarias,
+supervisores, equipos técnicos, estudiantes de profesorados y otros actores de la
+comunidad educativa</b> interesados en la transformación de la escuela secundaria. 
+</p>
+<p>
+Están invitados a participar del <b>Congreso</b> todos los actores de la comunidad educativa como
+oyentes. Asimismo, se convoca especialmente a las escuelas que están implementando
+<b><i>Secundaria Aprende</i></b>, escuelas pioneras (cohorte 2025) y escuelas cohorte 2026, a
+presentar experiencias para su socialización en las distintas modalidades previstas.
+</p>
+</div>
 
 </div>
 
