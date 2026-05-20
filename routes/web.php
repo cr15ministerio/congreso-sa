@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Participante;
 use App\Http\Controllers\TallerController;
 use App\Http\Controllers\InscripcionController;
+use App\Http\Controllers\PropuestaTallerController;
 
 Route::get('/', function () {
     return view('home');
@@ -40,6 +41,14 @@ Route::middleware(['auth'])->group(function () {
 //     Route::get('/talleres', [TallerController::class, 'index'])->name('talleres.index');
 
 // });
+
+// PROPUESTAS TALLERES
+    Route::get('/proponer-taller', [PropuestaTallerController::class, 'create'])
+        ->name('propuestas.create');
+
+    Route::post('/proponer-taller', [PropuestaTallerController::class, 'store'])
+        ->name('propuestas.store');
+// FIN PROPUESTAS TALLERES
 
 Route::get('/talleres', [TallerController::class, 'index'])->name('talleres');
 
