@@ -49,4 +49,16 @@ class PropuestaTallerController extends Controller
 
         return redirect()->back()->with('success', 'La propuesta ha sido enviada correctamente para su evaluación. Más adelante nos comunicaremos por correo electrónico para informar al equipo sobre la resolución del comité de evaluación de talleres. Muchas gracias.');
     }
+
+    public function index()
+{
+    if (auth()->user()->rol != 'admin') {
+    abort(403);
+}
+    $propuestas = PropuestaTaller::with('talleristas')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('propuestas.index', compact('propuestas'));
+}
 }

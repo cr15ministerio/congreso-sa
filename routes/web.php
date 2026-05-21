@@ -43,6 +43,12 @@ Route::middleware(['auth'])->group(function () {
 // });
 
 // PROPUESTAS TALLERES
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin/propuestas-talleres', [PropuestaTallerController::class, 'index'])
+        ->name('propuestas.index');
+
+});
     Route::get('/proponer-taller', [PropuestaTallerController::class, 'create'])
         ->name('propuestas.create');
 
