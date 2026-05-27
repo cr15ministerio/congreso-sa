@@ -294,13 +294,13 @@
                 </p>
 
                 @php
-    $fechaCierre = \Carbon\Carbon::create(2026, 5, 30);
+    $fechaCierre = \Carbon\Carbon::create(2026, 6, 3);
    $diasRestantes = now()->startOfDay()->diffInDays($fechaCierre, false);
 @endphp
 
 <p>
     <strong>Fecha de cierre de la convocatoria:</strong>
-    Lunes 30 de mayo de 2026
+    Miércoles 3 de junio de 2026
 
     @if($diasRestantes > 0)
 

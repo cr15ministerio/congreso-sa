@@ -1,7 +1,7 @@
 <div class="bg-white border-bottom py-2 mb-4">
     <div class="container d-flex justify-content-between align-items-center">
 
-        <div>
+        <!-- <div>
             <a href="/talleres" class="btn btn-outline-dark btn-sm me-2">
                 Talleres
             </a>
@@ -30,15 +30,15 @@
             @endauth
 
            @guest
-    <a href="{{ route('login') }}" class="btn btn-outline-dark btn-sm me-2">
-        Ingresar
-    </a>
+            <a href="{{ route('login') }}" class="btn btn-outline-dark btn-sm me-2">
+                Ingresar
+            </a>
 
-    <a href="{{ route('register') }}" class="btn btn-dark btn-sm">
-        Registrarse
-    </a>
-@endguest
-        </div>
-
+            <a href="{{ route('register') }}" class="btn btn-dark btn-sm">
+                Registrarse
+            </a>
+        @endguest
+        </div> 
+        -->
     </div>
 </div>
