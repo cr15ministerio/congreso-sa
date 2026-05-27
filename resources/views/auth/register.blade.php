@@ -6,18 +6,70 @@
 <style>
 
 .registro-box {
-    max-width: 500px;
-    margin: 10px auto;
+    max-width: 850px;
+    margin: 20px auto;
     background: #ffffff;
-    padding: 30px;
+    padding: 35px;
     border-radius: 20px;
     box-shadow: 6px 6px 0px #8CE1D4;
 }
 
-.registro-box h2 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    margin-bottom: 20px;
+.opciones-registro {
+    display:flex;
+    gap:20px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.card-opcion {
+    flex:1;
+    min-width:280px;
+    border:2px solid #e5e5e5;
+    border-radius:16px;
+    padding:25px;
+    transition:0.2s;
+}
+
+.card-opcion:hover {
+    border-color:#8CE1D4;
+}
+
+.card-opcion h3 {
+    font-size:1.3rem;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.card-opcion p {
+    color:#666;
+}
+
+#formRegistroPersona {
+    display:none;
+    margin-top:40px;
+}
+
+.bloque-extra {
+    display:none;
+}
+
+.resultadosEscuelas {
+    border:1px solid #ccc;
+    border-top:none;
+    max-height:200px;
+    overflow-y:auto;
+    background:white;
+    position:relative;
+    z-index:1000;
+}
+
+.resultadoEscuela {
+    padding:10px;
+    cursor:pointer;
+}
+
+.resultadoEscuela:hover {
+    background:#f2f2f2;
 }
 
 </style>
@@ -25,222 +77,575 @@
 
 @section('content')
 
-
-    <div class="registro-box">
+<div class="registro-box">
 
     <h2 class="titulo-resaltado">
         <span>Registro</span>
     </h2>
-    <form method="POST" action="{{ route('register') }}">
-    @csrf
 
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control" required>
-        </div>
+    <!-- SELECTOR -->
 
-        <div class="col-md-6">
-            <label>Apellido</label>
-            <input type="text" name="apellido" class="form-control" required>
-        </div>
-    </div>
+    <div id="selectorInicial">
 
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <label>DNI</label>
-            <input type="text" name="DNI" class="form-control" required>
-        </div>
+        <div class="opciones-registro">
 
-        <div class="col-md-6">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-    </div>
+            <div class="card-opcion">
 
-    <!-- NUEVO -->
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <label>Pertenencia</label>
-            <select name="tipo_pertenencia" id="tipo_pertenencia" class="form-control" required>
-                <option value="">Seleccionar...</option>
-                <option value="escuela">Escuela</option>
-                <option value="organizacion">Organización</option>
-                <option value="ministerio">Ministerio</option>
-            </select>
-        </div>
-    </div>
+                <h3>Registrarme al congreso</h3>
 
-    <!-- BLOQUE ESCUELA -->
-    <div id="bloqueEscuela" style="display:none;">
+                <p>
+                    Participantes, talleristas,
+                    expositores, invitados y
+                    equipo organizador.
+                </p>
 
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <label>Área</label>
-                <select name="area" id="area" class="form-control">
-                    <option value="">Seleccionar área...</option>
-                    <option value="DEM">DEM</option>
-                    <option value="DEA">DEA</option>
-                    <option value="DENS">DENS</option>
-                    <option value="PRIVADA">PRIVADA</option>
-                    <option value="TECNICA">TÉCNICA</option>
-                </select>
+                <button type="button"
+                        class="btn btn-dark"
+                        id="btnRegistroPersona">
+
+                    Continuar
+
+                </button>
+
             </div>
 
-            <div class="col-md-6">
-                <label>Escuela</label>
-                <select name="escuela" id="escuela" class="form-control">
-                    <option value="">Seleccionar escuela...</option>
-                </select>
+            <div class="card-opcion">
+
+                <h3>Registrar estudiantes</h3>
+
+                <p>
+                    Inscripción de estudiantes
+                    de Nivel 3, 4 y 5.
+                </p>
+
+                <a href="/cargar-estudiantes"
+                   class="btn btn-success">
+
+                    Cargar estudiantes
+
+                </a>
+
             </div>
+
         </div>
 
     </div>
 
-    <!-- BLOQUE ORGANIZACIÓN -->
-    <div id="bloqueOrganizacion" style="display:none;">
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <label>Nombre de la organización</label>
-                <input type="text" 
-                       name="organizacion" 
-                       class="form-control">
+    <!-- FORMULARIO PERSONAS -->
+
+    <div id="formRegistroPersona">
+
+        <form method="POST"
+              action="{{ route('register') }}">
+
+            @csrf
+
+            <div class="row mt-3">
+
+                <div class="col-md-6">
+                    <label>Nombre</label>
+
+                    <input type="text"
+                           name="nombre"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Apellido</label>
+
+                    <input type="text"
+                           name="apellido"
+                           class="form-control"
+                           required>
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <!-- BLOQUE MINISTERIO -->
-    <div id="bloqueMinisterio" style="display:none;">
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <label>Área / dependencia del ministerio</label>
-                <input type="text" 
-                       name="dependencia_ministerio" 
-                       class="form-control">
+            <div class="row mt-3">
+
+                <div class="col-md-6">
+                    <label>DNI</label>
+
+                    <input type="text"
+                           name="DNI"
+                           id="dni"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Email</label>
+
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           class="form-control"
+                           required>
+                </div>
+
             </div>
-        </div>
+
+            <div class="row mt-3">
+
+                <div class="col-md-12">
+
+                    <label>Rol en el congreso</label>
+
+                    <select name="rol"
+                            id="rolCongreso"
+                            class="form-control"
+                            required>
+
+                        <option value="">
+                            Seleccionar...
+                        </option>
+
+                        <option value="participante">
+                            Participante
+                        </option>
+
+                        <option value="tallerista">
+                            Tallerista
+                        </option>
+
+                        <option value="expositor">
+                            Expositor
+                        </option>
+
+                        <option value="equipo organizador">
+                            Equipo organizador
+                        </option>
+
+                        <option value="invitado">
+                            Invitado
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- TIPO INSTITUCIÓN -->
+
+            <div id="bloqueInstitucion"
+                 class="bloque-extra">
+
+                <div class="row mt-3">
+
+                    <div class="col-md-12">
+
+                        <label>Tipo de institución</label>
+
+                        <select name="tipo_institucion"
+                                id="tipoInstitucion"
+                                class="form-control">
+
+                            <option value="">
+                                Seleccionar...
+                            </option>
+
+                            <option value="Universidad">
+                                Universidad
+                            </option>
+
+                            <option value="Escuela">
+                                Escuela
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- UNIVERSIDAD -->
+
+            <div id="bloqueUniversidad"
+                 class="bloque-extra">
+
+                <div class="row mt-3">
+
+                    <div class="col-md-12">
+
+                        <label>Universidad</label>
+
+                        <select name="universidad"
+                                id="universidad"
+                                class="form-control">
+
+                            <option value="">
+                                Seleccionar...
+                            </option>
+
+                            <option value="Universidad de la Ciudad">
+                                Universidad de la Ciudad
+                            </option>
+
+                            <option value="Otra universidad">
+                                Otra universidad
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- OTRA UNIVERSIDAD -->
+
+            <div id="bloqueOtraUniversidad"
+                 class="bloque-extra">
+
+                <div class="row mt-3">
+
+                    <div class="col-md-12">
+
+                        <label>Nombre universidad</label>
+
+                        <input type="text"
+                               name="organizacion"
+                               class="form-control">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ESCUELA -->
+
+            <div id="bloqueEscuela"
+                 class="bloque-extra">
+
+                <div class="row mt-3">
+
+                    <div class="col-md-6">
+
+                        <label>Área</label>
+
+                        <select name="area"
+                                id="area"
+                                class="form-control">
+
+                            <option value="">
+                                Seleccionar...
+                            </option>
+
+                            <option value="DEM">DEM</option>
+                            <option value="DEA">DEA</option>
+                            <option value="DENS">DENS</option>
+                            <option value="DET">DET</option>
+                            <option value="PRIV">DGEGP</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label>Escuela</label>
+
+                        <input type="text"
+                               id="busquedaEscuela"
+                               name="escuela"
+                               class="form-control"
+                               autocomplete="off"
+                               placeholder="Escriba palabras clave...">
+
+                        <div id="resultadosEscuelas"
+                             class="resultadosEscuelas">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- INVITADO -->
+
+            <div id="bloqueInvitado"
+                 class="bloque-extra">
+
+                <div class="row mt-3">
+
+                    <div class="col-md-12">
+
+                        <label>Organización</label>
+
+                        <input type="text"
+                               name="organizacion_invitado"
+                               class="form-control">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+              <!-- agregado para rol_en_la_escuela -->
+                     <div class="row mt-3">
+                        <div class="col-md-12">
+
+                            <label>
+                                Rol en su institución / escuela
+                            </label>
+
+                            <input type="text"
+                                name="rol_en_escuela"
+                                class="form-control"
+                                placeholder="Ej: docente, coordinador TIC, supervisor, bibliotecario...">
+
+                        </div>
+                    </div>
+                    <!-- fin de agregado -->
+
+            <!-- MINISTERIO -->
+
+            <div id="bloqueMinisterio"
+                 class="bloque-extra">
+
+                <div class="alert alert-info mt-3">
+
+                    Organización asignada:
+                    <strong>
+                        Ministerio de Educación GCBA
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <!-- PASSWORD -->
+
+            <div class="row mt-4">
+
+                <div class="col-md-6">
+
+                    <label>Contraseña</label>
+
+                    <input type="password"
+                           name="password"
+                           class="form-control"
+                           required>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label>Confirmar contraseña</label>
+
+                    <input type="password"
+                           name="password_confirmation"
+                           class="form-control"
+                           required>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+
+                <a href="{{ route('login') }}"
+                   class="text-decoration-none">
+
+                    ¿Ya estás registrado?
+
+                </a>
+
+                <button class="btn btn-dark">
+                    Registrarse
+                </button>
+
+            </div>
+
+        </form>
+
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <label>Contraseña</label>
-            <input type="password"
-                   name="password"
-                   class="form-control"
-                   required>
-
-            @error('password')
-                <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
-
-        <div class="col-md-6">
-            <label>Confirmar contraseña</label>
-            <input type="password"
-                   name="password_confirmation"
-                   class="form-control"
-                   required>
-
-            @error('password_confirmation')
-                <small class="text-danger">{{ $message }}</small>
-            @enderror
-        </div>
-    </div>
-
-    <div class="flex items-center justify-end mt-4">
-        <a href="{{ route('login') }}" class="text-decoration-none">
-            ¿Ya estás registrado?
-        </a>
-
-        <button class="btn btn-dark ms-3">
-            Registrarse
-        </button>
-    </div>
-</form>
+</div>
 
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    const tipo = document.getElementById('tipo_pertenencia');
+    // MOSTRAR FORM
 
-    const bloqueEscuela = document.getElementById('bloqueEscuela');
-    const bloqueOrganizacion = document.getElementById('bloqueOrganizacion');
-    const bloqueMinisterio = document.getElementById('bloqueMinisterio');
+    document.getElementById('btnRegistroPersona')
+        .addEventListener('click', function () {
 
-    tipo.addEventListener('change', function () {
+            document.getElementById('selectorInicial')
+                .style.display = 'none';
 
-        bloqueEscuela.style.display = 'none';
-        bloqueOrganizacion.style.display = 'none';
-        bloqueMinisterio.style.display = 'none';
+            document.getElementById('formRegistroPersona')
+                .style.display = 'block';
 
-        if (this.value === 'escuela') {
-            bloqueEscuela.style.display = 'block';
+        });
+
+    // LIMPIAR DNI
+
+    document.getElementById('dni')
+        .addEventListener('input', function () {
+
+            this.value = this.value.replace(/\D/g, '');
+
+        });
+
+    // BLOQUES
+
+    const rol = document.getElementById('rolCongreso');
+
+    const bloqueInstitucion =
+        document.getElementById('bloqueInstitucion');
+
+    const bloqueUniversidad =
+        document.getElementById('bloqueUniversidad');
+
+    const bloqueOtraUniversidad =
+        document.getElementById('bloqueOtraUniversidad');
+
+    const bloqueEscuela =
+        document.getElementById('bloqueEscuela');
+
+    const bloqueInvitado =
+        document.getElementById('bloqueInvitado');
+
+    const bloqueMinisterio =
+        document.getElementById('bloqueMinisterio');
+
+    rol.addEventListener('change', function () {
+
+        ocultarTodos();
+
+        if (
+            this.value === 'participante' ||
+            this.value === 'tallerista' ||
+            this.value === 'expositor'
+        ) {
+
+            bloqueInstitucion.style.display = 'block';
+
         }
 
-        if (this.value === 'organizacion') {
-            bloqueOrganizacion.style.display = 'block';
+        if (this.value === 'invitado') {
+
+            bloqueInvitado.style.display = 'block';
+
         }
 
-        if (this.value === 'ministerio') {
+        if (this.value === 'equipo organizador') {
+
             bloqueMinisterio.style.display = 'block';
+
         }
+
     });
 
-    // ESCUELAS DE EJEMPLO
-    const escuelasPorArea = {
-        DEM: [
-            'Escuela 1 DEM',
-            'Escuela 2 DEM'
-        ],
-        DEA: [
-            'Escuela 1 DEA',
-            'Escuela 2 DEA'
-        ],
-        DENS: [
-            'Escuela 1 DENS',
-            'Escuela 2 DENS'
-        ],
-        PRIVADA: [
-            'Escuela 1 PRIVADA',
-            'Escuela 2 PRIVADA'
-        ],
-        TECNICA: [
-            'Escuela 1 TÉCNICA',
-            'Escuela 2 TÉCNICA'
-        ]
-    };
+    document.getElementById('tipoInstitucion')
+        .addEventListener('change', function () {
 
-    const areaSelect = document.getElementById('area');
-    const escuelaSelect = document.getElementById('escuela');
+            bloqueUniversidad.style.display = 'none';
+            bloqueOtraUniversidad.style.display = 'none';
+            bloqueEscuela.style.display = 'none';
 
-    areaSelect.addEventListener('change', function () {
+            if (this.value === 'Universidad') {
 
-        const area = this.value;
+                bloqueUniversidad.style.display = 'block';
 
-        escuelaSelect.innerHTML =
-            '<option value="">Seleccionar escuela...</option>';
+            }
 
-        if (escuelasPorArea[area]) {
+            if (this.value === 'Escuela') {
 
-            escuelasPorArea[area].forEach(function (escuela) {
+                bloqueEscuela.style.display = 'block';
 
-                const option = document.createElement('option');
+            }
 
-                option.value = escuela;
-                option.textContent = escuela;
+        });
 
-                escuelaSelect.appendChild(option);
+    document.getElementById('universidad')
+        .addEventListener('change', function () {
+
+            bloqueOtraUniversidad.style.display = 'none';
+
+            if (this.value === 'Otra universidad') {
+
+                bloqueOtraUniversidad.style.display = 'block';
+
+            }
+
+        });
+
+    function ocultarTodos() {
+
+        bloqueInstitucion.style.display = 'none';
+        bloqueUniversidad.style.display = 'none';
+        bloqueOtraUniversidad.style.display = 'none';
+        bloqueEscuela.style.display = 'none';
+        bloqueInvitado.style.display = 'none';
+        bloqueMinisterio.style.display = 'none';
+
+    }
+
+    // BUSCAR ESCUELAS
+
+    const inputEscuela =
+        document.getElementById('busquedaEscuela');
+
+    const resultados =
+        document.getElementById('resultadosEscuelas');
+
+    inputEscuela.addEventListener('keyup', async function () {
+
+        const area =
+            document.getElementById('area').value;
+
+        const q = this.value;
+
+        if (q.length < 2 || area === '') {
+
+            resultados.innerHTML = '';
+            return;
+
+        }
+
+        const response =
+            await fetch(`/buscar-escuelas?area=${area}&q=${q}`);
+
+        const escuelas =
+            await response.json();
+
+        resultados.innerHTML = '';
+
+        escuelas.forEach(function (escuela) {
+
+            const div =
+                document.createElement('div');
+
+            div.classList.add('resultadoEscuela');
+
+            div.innerText = escuela;
+
+            div.addEventListener('click', function () {
+
+                inputEscuela.value = escuela;
+                resultados.innerHTML = '';
 
             });
 
-        }
+            resultados.appendChild(div);
+
+        });
 
     });
 
 });
 
 </script>
-    </div>
 
 @endsection

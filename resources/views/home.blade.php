@@ -41,12 +41,12 @@
     <!-- BLOQUE DESTACADO -->
     <div class="bloque-convocatoria">
         <h2 class="titulo-resaltado">
-            <span>Convocatoria de participación</span>
+            <span>Información general sobre el congreso</span>
         </h2>
 
-        <h2 class="titulo-resaltado">
+        <!-- <h2 class="titulo-resaltado">
             <span>y presentación de experiencias</span>
-        </h2>
+        </h2> -->
     </div>
 
    <!-- TEXTO -->

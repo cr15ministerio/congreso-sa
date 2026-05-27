@@ -36,6 +36,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/completar-perfil', [ParticipanteController::class, 'store'])->name('perfil.store');
 });
 
+// INSCRIBIR ESTUDIANTES
+use App\Http\Controllers\EstudianteController;
+
+Route::get('/buscar-escuelas', [EstudianteController::class, 'buscarEscuelas']);
+
+Route::get('/cargar-estudiantes', [EstudianteController::class, 'formulario']);
+
+Route::post('/cargar-estudiantes', [EstudianteController::class, 'guardar']);
+
 // Route::middleware(['auth'])->group(function () {
 
 //     Route::get('/talleres', [TallerController::class, 'index'])->name('talleres.index');
