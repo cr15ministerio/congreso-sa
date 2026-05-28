@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
@@ -18,8 +19,6 @@ class EstudianteController extends Controller
 {
     $request->validate([
 
-        'area' => 'required',
-
         'escuela' => 'required',
 
         'estudiantes' => 'required|array|min:1',
@@ -29,8 +28,6 @@ class EstudianteController extends Controller
         'estudiantes.*.apellido' => 'required',
 
         'estudiantes.*.dni' => 'required',
-
-        'estudiantes.*.nivel' => 'required',
 
     ]);
 
@@ -47,7 +44,9 @@ class EstudianteController extends Controller
         $passwordAleatoria =
             Str::random(40);
 
-        User::create([
+        // CREAR USER
+
+        $user = User::create([
 
             'name' =>
                 $estudiante['nombre'] .
@@ -72,14 +71,26 @@ class EstudianteController extends Controller
             'rol' =>
                 'estudiante',
 
-            'nivel' =>
-                $estudiante['nivel'],
+        ]);
 
-            'area' =>
-                $request->area,
+        // CREAR PARTICIPANTE
+
+        DB::table('participantes')->insert([
+
+            'user_id' =>
+                $user->id,
 
             'escuela' =>
                 $request->escuela,
+
+            'rol_en_escuela' =>
+                'estudiante',
+
+            'created_at' =>
+                now(),
+
+            'updated_at' =>
+                now(),
 
         ]);
 

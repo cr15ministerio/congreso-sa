@@ -79,6 +79,24 @@
 
 <div class="registro-box">
 
+   @if ($errors->any())
+
+    <div class="alert alert-danger mt-3">
+
+        <ul style="margin-bottom:0;">
+
+            @foreach ($errors->all() as $error)
+
+                <li>{{ $error }}</li>
+
+            @endforeach
+
+        </ul>
+
+    </div>
+
+@endif
+
     <h2 class="titulo-resaltado">
         <span>Registro</span>
     </h2>
@@ -130,6 +148,7 @@
         </div>
 
     </div>
+
 
     <!-- FORMULARIO PERSONAS -->
 
@@ -213,7 +232,7 @@
                             Expositor
                         </option>
 
-                        <option value="equipo organizador">
+                        <option value="equipo_organizador">
                             Equipo organizador
                         </option>
 
@@ -246,13 +265,15 @@
                                 Seleccionar...
                             </option>
 
+                            <option value="Escuela">
+                                Escuela
+                            </option>
+
                             <option value="Universidad">
                                 Universidad
                             </option>
 
-                            <option value="Escuela">
-                                Escuela
-                            </option>
+                            
 
                         </select>
 
@@ -488,6 +509,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         });
 
+        // nostrar mensaje de error
+        @if ($errors->any())
+
+    document.getElementById('selectorInicial')
+        .style.display = 'none';
+
+    document.getElementById('formRegistroPersona')
+        .style.display = 'block';
+
+@endif
+        // fin de mensaje de error
+
     // LIMPIAR DNI
 
     document.getElementById('dni')
@@ -539,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-        if (this.value === 'equipo organizador') {
+        if (this.value === 'equipo_organizador') {
 
             bloqueMinisterio.style.display = 'block';
 

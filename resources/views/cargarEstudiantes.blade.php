@@ -198,42 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         </div>
 
-                        <div class="col-md-3">
-
-                            <label>Nivel</label>
-
-                            <select name="estudiantes[${contador}][nivel]"
-                                    class="form-control"
-                                    required>
-
-                                <option value="">
-                                    Seleccionar...
-                                </option>
-
-                                <option value="Nivel 1">
-                                    Nivel 1
-                                </option>
-
-                                <option value="Nivel 2">
-                                    Nivel 2
-                                </option>
-
-                                <option value="Nivel 3">
-                                    Nivel 3
-                                </option>
-
-                                <option value="Nivel 4">
-                                    Nivel 4
-                                </option>
-
-                                <option value="Nivel 5">
-                                    Nivel 5
-                                </option>
-
-                            </select>
-
-                        </div>
-
                     </div>
 
                 </div>

@@ -15,12 +15,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
 
-    $participante = Participante::where('user_id', Auth::id())->first();
-
-    if (!$participante) {
-        return redirect()->route('perfil.create');
-    }
-
     return view('dashboard');
 
 })->middleware(['auth'])->name('dashboard');
@@ -29,11 +23,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/completar-perfil', [ParticipanteController::class, 'create'])->name('perfil.create');
-    Route::post('/completar-perfil', [ParticipanteController::class, 'store'])->name('perfil.store');
 });
 
 // INSCRIBIR ESTUDIANTES
