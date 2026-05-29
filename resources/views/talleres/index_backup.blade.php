@@ -1,16 +1,9 @@
-<!-- <!DOCTYPE html>
-<html>
-<head> -->
-
-
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Talleres')
 
-     <title>Talleres</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
+@push('styles')
+<style>
         body {
             background-color: #f7f7f7;
         }
@@ -65,18 +58,178 @@
     padding-left: 10px;
     margin-top: 30px;
 }
+
+.header-ba {
+    background-color: #8CE1D4;
+    height: 75px;
+    border-top-right-radius: 40px;
+}
+
+.header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* lado izquierdo */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+/* íconos más finos */
+.header-left span {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* logo */
+.header-logo {
+    height: 30px;
+    object-fit: contain;
+}
+
+.footer-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+
+.footer-logo {
+    height: 35px;
+    object-fit: contain;
+}
+
+.footer-dots {
+    height: 35px; /* mismo alto que el logo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-dots span {
+    width: 3px;
+    height: 3px;
+    background-color: #0B2B3C;
+    border-radius: 50%;
+}
+
+.footer-ba {
+    background-color: #F2C230;
+    border-top-right-radius: 28px;
+}
+
+/* texto */
+.handle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.icon-social {
+    height: 23px;
+    transition: transform 0.15s ease;
+}
+
+.icon-social:hover {
+    transform: scale(1.1);
+}
+
+.subheader-sa {
+    height: 95px;
+   background: linear-gradient(
+    to right,
+    #6ED3C5 0%,
+    #ffffff 40%,
+    #ffffff 55%,
+    #FFD000 100%
+);
+    display: flex;
+    align-items: center;
+}
+
+.subheader-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subheader-left {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.titulo-congreso {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.5rem;   /* 👈 ya el valor final */
+    font-weight: 600;
+    color: #0B2B3C;
+}
+
+/* logo secundaria aprende */
+.logo-sa {
+    height: 85px;
+    transform: translateY(26px); /* 👈 ESTE ES EL AJUSTE CLAVE */
+}
+
+.titulo-resaltado span {
+    position: relative;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #0B2B3C;
+    display: inline-block;
+}
+
+/* fondo amarillo */
+.titulo-resaltado span::before {
+    content: "";
+    position: absolute;
+     left: -6px;
+
+    right: -6px;
+
+    bottom: 0.45em;   /* 👈 más abajo */
+
+    height: 0.45em;   /* 👈 más fino */
+
+    background: #FFD000;
+    z-index: -2;
+}
+
+/* fondo celeste (ligeramente corrido) */
+.titulo-resaltado span::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+
+    right: -2px;
+
+    bottom: 0.15em;  /* 👈 un poco más abajo que el amarillo */
+
+    height: 0.45em;   /* 👈 mismo grosor */
+
+    background: #8CE1D4;
+    z-index: -1;
+}
+
+
+
     </style>
-<!-- </head> -->
+@endpush
 
-<body class="container py-5">
+@section('content')
 
-<h1 class="mb-4 titulo-principal">Talleres</h1>
+<div>
 
-<!-- @if(count($misInscripciones) > 0)
-<div class="alert alert-info">
-    Ya estás inscripto en un taller. Podés cambiarlo seleccionando otro.
-</div>
-@endif -->
+<!-- <h1 class="mb-4 titulo-principal">Talleres</h1> -->
+ <h1 class="titulo-resaltado">
+    <span>Talleres</span>
+</h1>
 
 @if($inscripciones17)
 <div class="alert alert-info">
@@ -148,7 +301,7 @@
                     <!-- <p class="text-muted small">
                         {{ $t->descripcion }}
                     </p> -->
-                <p class="small text-muted">Lugar: {{ $t->aula }}</p>
+                <p class="small text-muted"><b>Lugar:</b> {{ $t->aula }}</p>
 
                 <button class="btn btn-outline-dark btn-sm w-100 mb-2"
                         data-bs-toggle="modal"
@@ -253,7 +406,7 @@
                     <!-- <p class="text-muted small">
                         {{ $t->descripcion }}
                     </p> -->
-                <p class="small text-muted">Aula {{ $t->aula }}</p>
+                <p class="small text-muted"><b>Lugar:</b>  {{ $t->aula }}</p>
 
                 <button class="btn btn-outline-dark btn-sm w-100 mb-2"
                         data-bs-toggle="modal"
@@ -287,11 +440,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
+</div>
 
 @endsection
    
 
 
-<!--
-</html> -->
