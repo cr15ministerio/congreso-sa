@@ -300,7 +300,7 @@
 
 <p>
     <strong>Fecha de cierre de la convocatoria:</strong>
-    Miércoles 3 de junio de 2026
+    Sábado 6 de junio de 2026 hasta las 11.59hs AM
 
     @if($diasRestantes > 0)
 
