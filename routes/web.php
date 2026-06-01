@@ -40,6 +40,12 @@ Route::post('/cargar-estudiantes', [EstudianteController::class, 'guardar']);
 
 // });
 
+// VISTA PARA INSCRIPTOS
+
+Route::get('/participantes', [ParticipanteController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('participantes.index');
+
 // PROPUESTAS TALLERES
 Route::middleware(['auth'])->group(function () {
 
@@ -53,6 +59,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/proponer-taller', [PropuestaTallerController::class, 'store'])
         ->name('propuestas.store');
 // FIN PROPUESTAS TALLERES
+
+// MESAS Y STANDS
+use App\Http\Controllers\ProgramaController;
+
+Route::get('/mesas', [ProgramaController::class, 'mesas'])
+    ->name('mesas');
+
+Route::get('/stands', [ProgramaController::class, 'stands'])
+    ->name('stands');
+
+// FIN DE MESAS Y STANDS
 
 Route::get('/talleres', [TallerController::class, 'index'])->name('talleres');
 

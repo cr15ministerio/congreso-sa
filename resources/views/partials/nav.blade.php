@@ -10,8 +10,14 @@
                 Consultar inscripción
             </a>
 
-             <a href="/proponer-taller" class="btn btn-outline-dark btn-sm">
+             <!-- <a href="/proponer-taller" class="btn btn-outline-dark btn-sm">
                 Proponer un taller
+            </a> -->
+            <a href="/mesas" class="btn btn-outline-dark btn-sm me-2">
+                Mesas
+            </a>
+            <a href="/stands" class="btn btn-outline-dark btn-sm me-2">
+                Stands
             </a>
         </div>
 

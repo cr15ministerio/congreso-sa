@@ -71,6 +71,99 @@ class RegisteredUserController extends Controller
 
     ]);
 
+    // agregado para validar que se completen todos los campos
+    // VALIDACIONES CONDICIONALES DEL FORMULARIO
+
+$rolesConInstitucion = [
+    'participante',
+    'expositor',
+    'tallerista',
+];
+
+if (in_array($request->rol, $rolesConInstitucion)) {
+
+    if (!$request->tipo_institucion) {
+
+        throw ValidationException::withMessages([
+            'tipo_institucion' =>
+                'Debe seleccionar el tipo de institución.',
+        ]);
+
+    }
+
+    if ($request->tipo_institucion === 'Escuela') {
+
+        if (!$request->area) {
+
+            throw ValidationException::withMessages([
+                'area' =>
+                    'Debe seleccionar un área.',
+            ]);
+
+        }
+
+        if (!$request->escuela) {
+
+            throw ValidationException::withMessages([
+                'escuela' =>
+                    'Debe seleccionar una escuela.',
+            ]);
+
+        }
+
+    }
+
+    if ($request->tipo_institucion === 'Universidad') {
+
+        if (!$request->universidad) {
+
+            throw ValidationException::withMessages([
+                'universidad' =>
+                    'Debe seleccionar una universidad.',
+            ]);
+
+        }
+
+        if (
+            $request->universidad === 'Otra universidad'
+            &&
+            !$request->organizacion
+        ) {
+
+            throw ValidationException::withMessages([
+                'organizacion' =>
+                    'Debe indicar el nombre de la universidad.',
+            ]);
+
+        }
+
+    }
+
+    if (!$request->rol_en_escuela) {
+
+        throw ValidationException::withMessages([
+            'rol_en_escuela' =>
+                'Debe indicar su rol en la institución.',
+        ]);
+
+    }
+
+}
+
+if (
+    $request->rol === 'invitado'
+    &&
+    !$request->organizacion_invitado
+) {
+
+    throw ValidationException::withMessages([
+        'organizacion_invitado' =>
+            'Debe indicar la organización.',
+    ]);
+
+}
+    // fin de agregado
+
       // agregado para validar tallerista
           // VALIDAR TALLERISTA
 
