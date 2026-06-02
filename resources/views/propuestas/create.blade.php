@@ -294,7 +294,7 @@
                 </p>
 
                 @php
-    $fechaCierre = \Carbon\Carbon::create(2026, 6, 3);
+    $fechaCierre = \Carbon\Carbon::create(2026, 6, 6);
    $diasRestantes = now()->startOfDay()->diffInDays($fechaCierre, false);
 @endphp
 
