@@ -27,5 +27,7 @@
     <p class="mt-2">
         Escaneá este código para consultar tu inscripción
     </p>
+   
+
 </div>
 </x-app-layout>

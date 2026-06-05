@@ -19,6 +19,25 @@
             <a href="/stands" class="btn btn-outline-dark btn-sm me-2">
                 Stands
             </a>
+            <!-- agregado para admin -->
+            @auth
+
+    @if(auth()->user()->rol == 'admin')
+
+        <a href="/participantes"
+           class="btn btn-outline-dark btn-sm me-2">
+            Participantes
+        </a>
+
+        <a href="/admin/propuestas-talleres"
+           class="btn btn-outline-dark btn-sm me-2">
+            Propuestas de talleres
+        </a>
+
+    @endif
+
+@endauth
+             <!-- fin de agregado para admin -->
         </div>
 
         <div>

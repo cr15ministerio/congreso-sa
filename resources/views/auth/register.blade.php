@@ -127,7 +127,7 @@
 
             </div>
 
-            <div class="card-opcion">
+            <!-- <div class="card-opcion">
 
                 <h3>Registrar estudiantes</h3>
 
@@ -143,7 +143,7 @@
 
                 </a>
 
-            </div>
+            </div> -->
 
         </div>
 
