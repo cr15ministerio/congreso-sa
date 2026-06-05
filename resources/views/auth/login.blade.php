@@ -50,17 +50,27 @@
             @enderror
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mt-4">
+       <div class="d-flex justify-content-between align-items-center mt-4">
 
-            <a href="{{ route('register') }}" class="text-decoration-none">
-                Crear cuenta
-            </a>
+                <div class="d-flex flex-column gap-2">
 
-            <button class="btn btn-dark">
-                Ingresar
-            </button>
+                    <a href="{{ route('register') }}"
+                   class="btn btn-outline-primary btn-sm text-start">
+                       ➕ Crear cuenta
+                    </a>
 
-        </div>
+                    <a href="{{ route('password.request') }}"
+                   class="btn btn-outline-secondary btn-sm text-start">
+                       🔑 Recuperar contraseña
+                    </a>
+
+                </div>
+
+    <button class="btn btn-dark">
+        Ingresar
+    </button>
+
+</div>
 
     </form>
 

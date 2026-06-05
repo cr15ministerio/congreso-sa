@@ -7,6 +7,7 @@
     <link rel="stylesheet"
       href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('imgs/favicon.png') }}">
 
     <style>
 
