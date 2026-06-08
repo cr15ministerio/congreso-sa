@@ -34,6 +34,14 @@
             Propuestas de talleres
         </a>
 
+        <a href="/acreditaciones"
+
+       class="btn btn-outline-dark btn-sm">
+
+        QR y acreditaciones
+
+        </a>
+
     @endif
 
 @endauth

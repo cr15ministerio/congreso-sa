@@ -8,6 +8,7 @@ use App\Models\Participante;
 use App\Http\Controllers\TallerController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\PropuestaTallerController;
+use App\Http\Controllers\AcreditacionController;
 
 Route::get('/', function () {
     return view('home');
@@ -23,6 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// ACREDITACIÓN
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/acreditaciones', [AcreditacionController::class, 'panel']);
+
+    Route::get('/acreditar/congreso/{fecha}', [AcreditacionController::class, 'acreditarCongreso']);
 });
 
 // INSCRIBIR ESTUDIANTES
