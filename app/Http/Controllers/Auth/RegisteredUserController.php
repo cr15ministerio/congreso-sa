@@ -91,27 +91,41 @@ if (in_array($request->rol, $rolesConInstitucion)) {
 
     }
 
-    if ($request->tipo_institucion === 'Escuela') {
+   if ($request->tipo_institucion === 'Escuela') {
 
-        if (!$request->area) {
+    if (!$request->area) {
 
-            throw ValidationException::withMessages([
-                'area' =>
-                    'Debe seleccionar un área.',
-            ]);
-
-        }
-
-        if (!$request->escuela) {
-
-            throw ValidationException::withMessages([
-                'escuela' =>
-                    'Debe seleccionar una escuela.',
-            ]);
-
-        }
+        throw ValidationException::withMessages([
+            'area' =>
+                'Debe seleccionar un área.',
+        ]);
 
     }
+
+    if (!$request->escuela) {
+
+        throw ValidationException::withMessages([
+            'escuela' =>
+                'Debe seleccionar una escuela.',
+        ]);
+
+    }
+
+    if (
+        !$this->escuelaExisteEnCSV(
+            $request->area,
+            $request->escuela
+        )
+    ) {
+
+        throw ValidationException::withMessages([
+            'escuela' =>
+                'Debe seleccionar una escuela válida del listado.',
+        ]);
+
+    }
+
+}
 
     if ($request->tipo_institucion === 'Universidad') {
 
@@ -339,4 +353,44 @@ if (
         route('dashboard', absolute: false)
     );
 }
+
+private function escuelaExisteEnCSV($area, $escuela)
+{
+    $csvPath =
+        storage_path('app/public/escuelas-congreso-sa.csv');
+
+    if (!file_exists($csvPath)) {
+        return false;
+    }
+
+    if (($handle = fopen($csvPath, 'r')) !== false) {
+
+        $headers = fgetcsv($handle, 1000, ',');
+
+        while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+
+            $fila =
+                array_combine($headers, $row);
+
+            if (
+                trim($fila['area_esc']) === trim($area)
+                &&
+                trim($fila['nombre_esc']) === trim($escuela)
+            ) {
+
+                fclose($handle);
+
+                return true;
+
+            }
+
+        }
+
+        fclose($handle);
+
+    }
+
+    return false;
+}
+
 }
