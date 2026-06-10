@@ -300,7 +300,7 @@
 
 <p>
     <strong>Fecha de cierre de la convocatoria:</strong>
-    Martes 9 de junio de 2026 hasta las 13.00hs AM
+    Martes 9 de junio de 2026 hasta las 23.59hs
 
     @if($diasRestantes > 0)
 
