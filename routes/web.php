@@ -61,6 +61,29 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/propuestas-talleres', [PropuestaTallerController::class, 'index'])
         ->name('propuestas.index');
 
+     Route::post('/admin/propuestas-talleres/{propuesta}/estado',
+
+        [PropuestaTallerController::class, 'cambiarEstado'])
+
+        ->name('propuestas.estado');
+
+    Route::get('/admin/propuestas-talleres/{propuesta}/editar',
+
+        [PropuestaTallerController::class, 'edit'])
+
+        ->name('propuestas.edit');
+
+    Route::put('/admin/propuestas-talleres/{propuesta}',
+
+        [PropuestaTallerController::class, 'update'])
+
+        ->name('propuestas.update');
+
+    Route::post(
+    '/admin/propuestas-talleres/{propuesta}/crear-taller',
+    [PropuestaTallerController::class, 'crearTaller']
+)->name('propuestas.crearTaller');
+
 });
     Route::get('/proponer-taller', [PropuestaTallerController::class, 'create'])
         ->name('propuestas.create');

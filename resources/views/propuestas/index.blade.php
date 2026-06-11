@@ -173,7 +173,9 @@
 
                             <tr>
 
-                                <th>Estado</th>
+                                <th style="width: 100px;">
+    Estado
+</th>
 
                                 <th>Jornada</th>
 
@@ -187,7 +189,9 @@
 
                                 <th>Fecha</th>
 
-                                <th>Ver</th>
+                                <th>Ver/Editar</th>
+
+                                <th>Crear taller</th>
 
                             </tr>
 
@@ -200,8 +204,36 @@
                                 <tr>
 
                                     <td>
-                                        {{ ucfirst($p->estado) }}
-                                    </td>
+
+<form method="POST"
+      action="{{ route('propuestas.estado', $p) }}">
+
+    @csrf
+
+    <select name="estado"
+            class="form-select form-select-sm"
+            onchange="this.form.submit()">
+
+        <option value="pendiente"
+            {{ $p->estado == 'pendiente' ? 'selected' : '' }}>
+            🕒 Pendiente
+        </option>
+
+        <option value="aceptada"
+            {{ $p->estado == 'aceptada' ? 'selected' : '' }}>
+            ✅ Aceptada
+        </option>
+
+        <option value="rechazada"
+            {{ $p->estado == 'rechazada' ? 'selected' : '' }}>
+            ❌ Rechazada
+        </option>
+
+    </select>
+
+</form>
+
+</td>
 
                                     <td>
 
@@ -255,15 +287,47 @@
 
                                     <td>
 
-                                        <button class="btn btn-outline-dark btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalPropuesta{{ $p->id }}">
+    <div class="d-flex gap-1">
 
-                                            Ver
+        <button class="btn btn-outline-dark btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#modalPropuesta{{ $p->id }}">
 
-                                        </button>
+            Ver
 
-                                    </td>
+        </button>
+
+        <a href="{{ route('propuestas.edit', $p) }}"
+           class="btn btn-primary btn-sm">
+
+            Editar
+
+        </a>
+
+    </div>
+
+</td>
+<td>
+
+@if(
+    auth()->user()->email == 'cristian.rizzi@bue.edu.ar'
+    && $p->estado == 'aceptada'
+)
+
+    <form method="POST"
+          action="{{ route('propuestas.crearTaller', $p) }}">
+
+        @csrf
+
+        <button class="btn btn-success btn-sm">
+            ➕ Crear
+        </button>
+
+    </form>
+
+@endif
+
+</td>
 
                                 </tr>
 

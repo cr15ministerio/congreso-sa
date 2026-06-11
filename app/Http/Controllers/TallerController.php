@@ -66,4 +66,6 @@ public function index()
         'inscripciones18'    // 👈 NUEVO
     ));
 }
+
+
 }
