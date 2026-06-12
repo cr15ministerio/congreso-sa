@@ -40,17 +40,27 @@ public function index()
             ->exists();
     }
 
+    // $talleres17 = Taller::where('dia', '2026-06-17')
+    //     ->where('aprobado', 1)
+    //     ->get();
+    
     $talleres17 = Taller::where('dia', '2026-06-17')
-        ->where('aprobado', 1)
-        ->get();
+    ->where('aprobado', 1)
+    ->orderBy('hora_inicio')  // 👈
+    ->get();
 
     $talleres17Label = Carbon::parse('2026-06-17')
         ->locale('es')
         ->translatedFormat('l d \d\e F');
 
+    // $talleres18 = Taller::where('dia', '2026-06-18')
+    //     ->where('aprobado', 1)
+    //     ->get();
+
     $talleres18 = Taller::where('dia', '2026-06-18')
-        ->where('aprobado', 1)
-        ->get();
+    ->where('aprobado', 1)
+    ->orderBy('hora_inicio')  // 👈
+    ->get();
 
     $talleres18Label = Carbon::parse('2026-06-18')
         ->locale('es')

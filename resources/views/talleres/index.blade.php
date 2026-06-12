@@ -35,6 +35,7 @@
             border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 600;
+            align-self: flex-start;
         }
 
         .btn-inscripto {
@@ -241,7 +242,7 @@
 <div id="dia17" class="bloque-dia">
     <!-- <h3 class="mb-3">17 de junio</h3> -->
     <h2 class="fecha-titulo">{{ ucfirst($talleres17Label) }}</h2>
-                        <span class="tag-dia">14:00 – 16:30</span>
+                        <!-- <span class="tag-dia">14:30 – 16:30</span> -->
 
     <div class="row mt-3 g-3">
         @foreach($talleres17 as $t)
@@ -250,7 +251,9 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">{{ $t->titulo }}</h5>
+                             
+                            <span class="tag-dia">{{ substr($t->hora_inicio, 0, 5) }} a {{ substr($t->hora_fin, 0, 5) }} hs</span>
+                          
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
@@ -284,7 +287,7 @@
                 </div>
              <!-- fin del modal -->
         <div class="col-6 col-md-4 col-lg-2">
-            <!-- <div class="card card-taller p-3 position-relative"> -->
+
                 <div class="card card-taller p-3 {{ in_array($t->id, $misInscripciones) ? 'mi-taller' : '' }}">
 
     @if(in_array($t->id, $misInscripciones))
@@ -297,7 +300,9 @@
 
     @endif
 
-                <h6 class="fw-bold">{{ $t->titulo }}</h6>
+    <h5 class="tag-dia">{{ substr($t->hora_inicio, 0, 5) }} a {{ substr($t->hora_fin, 0, 5) }} hs</h5>         
+     
+    <h6 class="fw-bold">{{ $t->titulo }} </h6>
                     <!-- <p class="text-muted small">
                         {{ $t->descripcion }}
                     </p> -->
@@ -344,7 +349,8 @@
 <!-- ===== 18 ===== -->
 <div id="dia18" class="bloque-dia">
 <h2 class="fecha-titulo">{{ ucfirst($talleres18Label) }}</h2>
-                        <span class="tag-dia">9:00 – 11:30</span>
+                        <!-- <span class="tag-dia">9:00 – 11:30</span> -->
+                         
 
     <div class="row mt-3 g-3">
         @foreach($talleres18 as $t)
@@ -354,6 +360,7 @@
                     <div class="modal-content">
 
                     <div class="modal-header">
+                        <span class="tag-dia">{{ substr($t->hora_inicio, 0, 5) }} a {{ substr($t->hora_fin, 0, 5) }} hs</span>
                         <h5 class="modal-title">{{ $t->titulo }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
@@ -400,7 +407,7 @@
 
     @endif
 
-           
+           <h5 class="tag-dia">{{ substr($t->hora_inicio, 0, 5) }} a {{ substr($t->hora_fin, 0, 5) }} hs</h5>   
 
               <h6 class="fw-bold">{{ $t->titulo }}</h6>
                     <!-- <p class="text-muted small">

@@ -10,25 +10,101 @@
         <span>QR y acreditaciones</span>
     </h2>
 
+    <div class="card p-4 mb-4">
+
+        <h4>Congreso</h4>
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>QR</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Día 1</td>
+                    <td>
+                        <a href="{{ asset('imgs/qr/congreso-dia1.png') }}"
+                           target="_blank"
+                           class="btn btn-primary btn-sm">
+                            Ver QR
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Día 2</td>
+                    <td>
+                        <a href="{{ asset('imgs/qr/congreso-dia2.png') }}"
+                           target="_blank"
+                           class="btn btn-primary btn-sm">
+                            Ver QR
+                        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
     <div class="card p-4">
 
-        <h4>Acreditación Congreso</h4>
+        <h4>Talleres</h4>
 
-        <div class="mt-3">
+        <table class="table table-bordered table-hover">
 
-            <a href="{{ url('/acreditar/congreso/2026-06-17') }}"
-               target="_blank"
-               class="btn btn-primary">
-                Día 1
-            </a>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Taller</th>
+                    <th>Día</th>
+                    <th>Hora</th>
+                    <th>QR</th>
+                </tr>
+            </thead>
 
-            <a href="{{ url('/acreditar/congreso/2026-06-18') }}"
-               target="_blank"
-               class="btn btn-primary ms-2">
-                Día 2
-            </a>
+            <tbody>
 
-        </div>
+            @foreach($talleres as $taller)
+
+                <tr>
+
+                    <td>{{ $taller->id }}</td>
+
+                    <td>{{ $taller->titulo }}</td>
+
+                    <td>{{ $taller->dia }}</td>
+
+                    <td>
+                        {{ substr($taller->hora_inicio,0,5) }}
+                    </td>
+
+                    <td>
+
+                        <a href="{{ asset('imgs/qr/taller-'.$taller->id.'.png') }}"
+                           target="_blank"
+                           class="btn btn-primary btn-sm">
+
+                            Ver QR
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            @endforeach
+
+            </tbody>
+
+        </table>
 
     </div>
 

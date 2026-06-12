@@ -8,10 +8,24 @@ use Illuminate\Support\Facades\DB;
 
 class AcreditacionController extends Controller
 {
-    public function panel()
-    {
-        return view('acreditaciones');
+    // public function panel()
+    // {
+    //     return view('acreditaciones');
+    // }
+
+public function panel()
+{
+    if(auth()->user()->rol != 'admin'){
+        return redirect('/');
     }
+
+    $talleres = DB::table('talleres')
+        ->orderBy('dia')
+        ->orderBy('hora_inicio')
+        ->get();
+
+    return view('acreditaciones', compact('talleres'));
+}
 
     public function acreditarCongreso($fecha)
     {
