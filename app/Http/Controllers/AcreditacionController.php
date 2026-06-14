@@ -189,4 +189,99 @@ public function verQrTaller($id)
         compact('taller')
     );
 }
+
+public function certificados()
+{
+    return view('certificados.buscar');
+}
+
+public function buscarCertificados(Request $request)
+{
+    $user = DB::table('users')
+        ->where(
+            'DNI',
+            preg_replace('/\D/', '', $request->dni)
+        )
+        ->where(
+            'email',
+            $request->email
+        )
+        ->first();
+
+    if (!$user) {
+
+        return back()->with(
+            'error',
+            'No encontramos una inscripción asociada a ese DNI y correo electrónico.'
+        );
+    }
+
+    $certificadosCongreso =
+        DB::table('asistencias_congreso')
+            ->where('user_id', $user->id)
+            ->orderBy('fecha_congreso')
+            ->get();
+
+    $certificadosTalleres =
+        DB::table('asistencias_talleres')
+            ->join(
+                'talleres',
+                'asistencias_talleres.taller_id',
+                '=',
+                'talleres.id'
+            )
+            ->where(
+                'asistencias_talleres.user_id',
+                $user->id
+            )
+            ->select(
+                'talleres.id',
+                'talleres.titulo',
+                'talleres.dia',
+                'talleres.hora_inicio',
+                'talleres.hora_fin'
+            )
+            ->get();
+
+    return view(
+        'certificados.listado',
+        compact(
+            'user',
+            'certificadosCongreso',
+            'certificadosTalleres'
+        )
+    );
+}
+
+public function certificadoCongreso($user, $fecha)
+{
+    $usuario = DB::table('users')
+        ->where('id', $user)
+        ->first();
+
+    if (!$usuario) {
+        abort(404);
+    }
+
+    $evento = DB::table('asistencias_congreso')
+        ->where('user_id', $user)
+        ->where('fecha_congreso', $fecha)
+        ->first();
+
+    if (!$evento) {
+        abort(404);
+    }
+
+    // Valor por defecto
+    $tipo = 'participante';
+
+    return view(
+        'certificados.congreso',
+        compact(
+            'usuario',
+            'evento',
+            'tipo'
+        )
+    );
+}
 }

@@ -56,6 +56,34 @@ Route::get(
     [AcreditacionController::class, 'verQrTaller']
 );
 
+// CERTIFICADOS
+Route::get(
+    '/certificados',
+    [AcreditacionController::class, 'certificados']
+);
+
+Route::post(
+    '/certificados',
+    [AcreditacionController::class, 'buscarCertificados']
+);
+
+
+Route::get(
+
+    '/certificado/congreso/{user}/{fecha}',
+
+    [AcreditacionController::class, 'certificadoCongreso']
+
+);
+
+Route::get(
+
+    '/certificado/taller/{user}/{taller}',
+
+    [AcreditacionController::class, 'certificadoTaller']
+
+);
+
 // INSCRIBIR ESTUDIANTES
 use App\Http\Controllers\EstudianteController;
 
