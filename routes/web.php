@@ -26,13 +26,35 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// ACREDITACIÓN
+// ACREDITACIÓN CONGRESO
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/acreditaciones', [AcreditacionController::class, 'panel']);
 
-    Route::get('/acreditar/congreso/{fecha}', [AcreditacionController::class, 'acreditarCongreso']);
 });
+
+Route::get('/acreditar/congreso/{fecha}', [AcreditacionController::class, 'acreditarCongreso']);
+Route::post('/acreditar/congreso/{fecha}', [AcreditacionController::class, 'guardarAcreditacionCongreso']);
+Route::get(
+    '/ver-qr/congreso/{dia}',
+    [AcreditacionController::class, 'verQrCongreso']
+);
+
+// ACREDITACIÓN TALLERES
+Route::get(
+    '/acreditar/taller/{id}',
+    [AcreditacionController::class, 'acreditarTaller']
+);
+
+Route::post(
+    '/acreditar/taller/{id}',
+    [AcreditacionController::class, 'guardarAcreditacionTaller']
+);
+
+Route::get(
+    '/ver-qr/taller/{id}',
+    [AcreditacionController::class, 'verQrTaller']
+);
 
 // INSCRIBIR ESTUDIANTES
 use App\Http\Controllers\EstudianteController;

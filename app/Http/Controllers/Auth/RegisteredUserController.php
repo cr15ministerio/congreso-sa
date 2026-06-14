@@ -33,43 +33,48 @@ class RegisteredUserController extends Controller
 {
     $request->validate([
 
-        'nombre' => [
-            'required',
-            'string',
-            'max:100'
-        ],
+    'nombre' => [
+        'required',
+        'string',
+        'max:100'
+    ],
 
-        'apellido' => [
-            'required',
-            'string',
-            'max:100'
-        ],
+    'apellido' => [
+        'required',
+        'string',
+        'max:100'
+    ],
 
-        'DNI' => [
-            'required',
-            'string',
-            'max:20'
-        ],
+    'DNI' => [
+        'required',
+        'string',
+        'max:20'
+    ],
 
-        'email' => [
-            'required',
-            'string',
-            'email',
-            'max:255',
-            'unique:' . User::class
-        ],
+    'email' => [
+        'required',
+        'string',
+        'email',
+        'max:255',
+        'unique:' . User::class
+    ],
 
-        'password' => [
-            'required',
-            'confirmed',
-            'min:6'
-        ],
+    'password' => [
+        'required',
+        'confirmed',
+        'min:6'
+    ],
 
-        'rol' => [
-            'required'
-        ],
+    'rol' => [
+        'required'
+    ],
 
-    ]);
+], [
+
+    'email.unique' =>
+        'Ya existe una cuenta registrada con este correo electrónico. Si necesitás registrarte con otro rol, utilizá una dirección de correo diferente.',
+
+]);
 
     // agregado para validar que se completen todos los campos
     // VALIDACIONES CONDICIONALES DEL FORMULARIO

@@ -28,7 +28,7 @@
                 <tr>
                     <td>Día 1</td>
                     <td>
-                        <a href="{{ asset('imgs/qr/congreso-dia1.png') }}"
+                        <a href="{{ url('/ver-qr/congreso/1') }}"
                            target="_blank"
                            class="btn btn-primary btn-sm">
                             Ver QR
@@ -39,7 +39,7 @@
                 <tr>
                     <td>Día 2</td>
                     <td>
-                        <a href="{{ asset('imgs/qr/congreso-dia2.png') }}"
+                        <a href="{{ url('/ver-qr/congreso/2') }}"
                            target="_blank"
                            class="btn btn-primary btn-sm">
                             Ver QR
@@ -88,13 +88,13 @@
 
                     <td>
 
-                        <a href="{{ asset('imgs/qr/taller-'.$taller->id.'.png') }}"
-                           target="_blank"
-                           class="btn btn-primary btn-sm">
+                        <a href="{{ url('/ver-qr/taller/'.$taller->id) }}"
+   target="_blank"
+   class="btn btn-primary btn-sm">
 
-                            Ver QR
+    Ver QR
 
-                        </a>
+</a>
 
                     </td>
 
