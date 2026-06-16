@@ -77,12 +77,9 @@ Route::get(
 );
 
 Route::get(
-
     '/certificado/taller/{user}/{taller}',
-
     [AcreditacionController::class, 'certificadoTaller']
-
-);
+)->name('certificado.taller');
 
 // INSCRIBIR ESTUDIANTES
 use App\Http\Controllers\EstudianteController;

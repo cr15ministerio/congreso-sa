@@ -108,24 +108,18 @@
             DNI
             <strong>{{ $usuario->DNI }}</strong>
 
-            participó del <strong>Congreso Secundaria Aprende</strong>,
+            tuvo a su cargo el dictado del taller <strong>{{ $detalle }}</strong>, desarrollado en el marco del <strong>Congreso Secundaria Aprende</strong>,
             realizado el día
             <strong>
                 {{ \Carbon\Carbon::parse($evento->fecha_congreso)->format('d-m-Y') }}
             </strong>
 
             en la Universidad de la Ciudad,
-            sita en Tte. Gral. Juan Domingo Perón 802,
-            en calidad de
-            <strong>
-                {{ strtoupper(str_replace('_', ' ', $usuario->rol)) }}
-            </strong>.
+            sita en Tte. Gral. Juan Domingo Perón 802.
         </p>
 
         <p>
-            Agradecemos su participación en este espacio de encuentro,
-            intercambio y reflexión sobre las prácticas educativas y los
-            desafíos de la escuela secundaria.
+            Esta instancia formativa propició el intercambio de experiencias, herramientas y perspectivas para el fortalecimiento de las prácticas educativas.
         </p>
 
         <p>
