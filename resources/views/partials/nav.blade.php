@@ -10,6 +10,10 @@
                 Consultar inscripción
             </a>
 
+            <a href="/certificados" class="btn btn-outline-dark btn-sm">
+                Certificados
+            </a>
+
              <!-- <a href="/proponer-taller" class="btn btn-outline-dark btn-sm">
                 Proponer un taller
             </a> -->
