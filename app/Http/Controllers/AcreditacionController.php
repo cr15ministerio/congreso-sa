@@ -45,16 +45,29 @@ public function panel()
 
     public function guardarAcreditacionCongreso(Request $request, $fecha)
 {
+    $dni = preg_replace('/\D/', '', $request->dni);
+
+if (!empty($request->email)) {
+
     $user = DB::table('users')
-    ->where('DNI', preg_replace('/\D/', '', $request->dni))
-    ->where('email', $request->email)
-    ->first();
+        ->where('DNI', $dni)
+        ->where('email', $request->email)
+        ->first();
+
+} else {
+
+    $user = DB::table('users')
+        ->where('DNI', $dni)
+        ->where('rol', 'estudiante')
+        ->first();
+
+}
 
     if (!$user) {
 
         return back()->with(
             'error',
-            'No encontramos una inscripción asociada a ese DNI y correo electrónico.'
+            'No encontramos una inscripción asociada a los datos ingresados o los datos están incompletos.'
         );
     }
 
@@ -125,7 +138,7 @@ public function guardarAcreditacionTaller(
 
         return back()->with(
             'error',
-            'No encontramos una inscripción asociada a ese DNI y correo electrónico.'
+            'No encontramos una inscripción asociada a los datos ingresados o los datos están incompletos.'
         );
     }
 
@@ -385,6 +398,57 @@ public function certificadoTaller($user, $taller)
         '-' .
         $taller->id .
         '.pdf'
+    );
+}
+
+public function asistencias()
+{
+    if(auth()->user()->rol != 'admin'){
+        return redirect('/');
+    }
+
+    $talleres17 = DB::table('talleres')
+        ->where('dia', '2026-06-17')
+        ->orderBy('hora_inicio')
+        ->get();
+
+    $talleres18 = DB::table('talleres')
+        ->where('dia', '2026-06-18')
+        ->orderBy('hora_inicio')
+        ->get();
+
+    $asistenciasCongreso17 = DB::table('asistencias_congreso')
+        ->join('users', 'asistencias_congreso.user_id', '=', 'users.id')
+        ->where('fecha_congreso', '2026-06-17')
+        ->select(
+            'users.nombre',
+            'users.apellido',
+            'users.DNI',
+            'users.rol',
+            'asistencias_congreso.fecha_hora_registro'
+        )
+        ->get();
+
+    $asistenciasCongreso18 = DB::table('asistencias_congreso')
+        ->join('users', 'asistencias_congreso.user_id', '=', 'users.id')
+        ->where('fecha_congreso', '2026-06-18')
+        ->select(
+            'users.nombre',
+            'users.apellido',
+            'users.DNI',
+            'users.rol',
+            'asistencias_congreso.fecha_hora_registro'
+        )
+        ->get();
+
+    return view(
+        'participantes.asistencias',
+        compact(
+            'talleres17',
+            'talleres18',
+            'asistenciasCongreso17',
+            'asistenciasCongreso18'
+        )
     );
 }
 

@@ -46,6 +46,14 @@
 
         </a>
 
+        <a href="/asistencias"
+
+       class="btn btn-outline-dark btn-sm">
+
+        Asistencia
+
+        </a>
+
     @endif
 
 @endauth

@@ -56,6 +56,17 @@ Route::get(
     [AcreditacionController::class, 'verQrTaller']
 );
 
+// ASISTENCIA
+Route::middleware(['auth'])->group(function () {
+
+    Route::get(
+        '/asistencias',
+        [AcreditacionController::class, 'asistencias']
+    );
+
+});
+
+
 // CERTIFICADOS
 Route::get(
     '/certificados',

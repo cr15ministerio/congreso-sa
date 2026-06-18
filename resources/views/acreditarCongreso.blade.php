@@ -13,8 +13,13 @@
         </h2>
 
         <p>
-            Ingresá tu DNI y correo electrónico con que te inscribiste para registrar tu asistencia.
-        </p>
+    Ingresá tu DNI y, si corresponde, el correo electrónico con que te inscribiste para registrar tu asistencia.
+</p>
+
+<div class="alert alert-warning">
+    ⚠️ Si estás registrado como <b>estudiante</b>, ingresá únicamente tu DNI y dejá en blanco el campo <b>Email</b>.
+</div>
+
 
         @if(session('error'))
 
@@ -47,8 +52,7 @@
 <input
     type="email"
     name="email"
-    class="form-control"
-    required>
+    class="form-control">
 
             </div>
 
