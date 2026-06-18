@@ -218,6 +218,24 @@
     z-index: -1;
 }
 
+@media (max-width: 768px) {
+
+    .subheader-sa {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .titulo-congreso {
+        font-size: 1.7rem;
+    }
+
+    .logo-sa {
+        height: 50px;
+        transform: translateY(8px);
+    }
+
+}
+
 
 
     </style>

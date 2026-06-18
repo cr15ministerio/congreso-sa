@@ -72,6 +72,120 @@
     background:#f2f2f2;
 }
 
+/* agregado para responsive */
+@media (max-width: 768px) {
+
+    body {
+        background: #f6fbfa;
+    }
+
+    .registro-box {
+        max-width: 100%;
+        margin: 0;
+        padding: 22px 18px 28px 18px;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+    }
+
+    .titulo-resaltado {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    .titulo-resaltado span {
+        font-size: 1.8rem;
+    }
+
+    .opciones-registro {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .card-opcion {
+        width: 100%;
+        min-width: 0;
+        padding: 24px;
+        border-radius: 22px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+        margin-bottom: 18px;
+    }
+
+    .card-opcion h3 {
+        font-size: 1.35rem;
+    }
+
+    .card-opcion p {
+        font-size: 1rem;
+        line-height: 1.45;
+    }
+
+    .card-opcion .btn,
+    button.btn {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 14px;
+        font-size: 1.05rem;
+        font-weight: 700;
+    }
+
+    #formRegistroPersona {
+        margin-top: 10px;
+    }
+
+    label {
+        font-weight: 700;
+        margin-bottom: 6px;
+        font-size: .95rem;
+    }
+
+    .form-control,
+    select.form-control {
+        min-height: 48px;
+        border-radius: 14px;
+        font-size: 1rem;
+        padding: 11px 14px;
+    }
+
+    .row.mt-3,
+    .row.mt-4 {
+        margin-top: 12px !important;
+    }
+
+    .col-md-6,
+    .col-md-12 {
+        margin-bottom: 12px;
+    }
+
+    .alert {
+        border-radius: 16px;
+        font-size: .95rem;
+    }
+
+    .resultadosEscuelas {
+        border-radius: 0 0 14px 14px;
+        max-height: 220px;
+        box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    }
+
+    .resultadoEscuela {
+        padding: 14px;
+        font-size: .95rem;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column-reverse;
+        gap: 16px;
+        align-items: stretch !important;
+        margin-top: 20px !important;
+    }
+
+    .d-flex.justify-content-between a {
+        text-align: center;
+        font-size: .95rem;
+    }
+}
+
 </style>
 @endpush
 

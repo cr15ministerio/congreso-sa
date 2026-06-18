@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Congreso Secundaria Aprende')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -76,6 +78,8 @@
     display: flex;
     align-items: center;
 }
+
+
 
 .subheader-inner {
     display: flex;
@@ -179,6 +183,24 @@
 
     background: #8CE1D4;
     z-index: -1;
+}
+
+@media (max-width: 768px) {
+
+    .subheader-sa {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .titulo-congreso {
+        font-size: 1.7rem;
+    }
+
+    .logo-sa {
+        height: 50px;
+        transform: translateY(8px);
+    }
+
 }
 
 </style>
